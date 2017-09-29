@@ -1,0 +1,10 @@
+function h = ShadeDist(x, y, C, alfa)
+% h = ShadeDist(x, y, C, alfa) 
+% plot of x,y with color C and transparency alfa
+% plots the entire distribution with transparency and the non-transparent line with mean and std
+    desv=std(y);
+    media=mean(y);
+    PlotConError(x, media, media+desv, media-desv, C, 'o',1,0 )
+    h=fill([x x],[min(y) max(y)], C);
+    set(h,'faceAlpha', alfa);
+end
