@@ -1,0 +1,27 @@
+function hh=PlotConError(x,y,upy, dny, col, marker, tamanoMarker, w)
+% hh=PlotConError(x,y,upy, dny, col, marker, tamanoMarker, w)
+% Plot de X,Y con error que va desde dny hasta upy, de color col
+% con marker(o,+,d,x,etc) y con w de tamaño de whisker
+if nargin < 6 %define parametros default a partir de marker
+    marker='.';
+    tamanoMarker=5;
+    w=.1;
+end
+
+    p=plot(x,y,strcat(marker,'-'));
+    set(p,'Color',col,'MarkerSize', tamanoMarker )
+    hold on
+    for i=1:length(upy)
+        
+        %p=plot( [x(i) x(i)], [upy(i) dny(i)],strcat('-',col(end)) )
+        p=plot( [x(i) x(i)], [upy(i) dny(i)] );
+        set(p,'Color',col,'MarkerSize', tamanoMarker )
+        hold on
+        p=plot([x(i)-w x(i)+w], [upy(i) upy(i)]);
+        set(p,'Color',col,'MarkerSize', tamanoMarker )
+        p=plot([x(i)-w x(i)+w], [dny(i) dny(i)]);
+        set(p,'Color',col,'MarkerSize', tamanoMarker )
+        
+
+    end
+end
