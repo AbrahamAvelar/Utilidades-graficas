@@ -1,4 +1,4 @@
-function h = JitterPlot (thisX, y, jitter, shape, col)
+function h = JitterPlot (thisX, y, jitter, shape, col, MarkSize)
 % h = JitterPlot (thisX, y, jitter, shape, col)
 %   thisX el centro donde quieres que esten dispersos los puntos
 %   los valores en el eje y
@@ -9,10 +9,11 @@ function h = JitterPlot (thisX, y, jitter, shape, col)
 if nargin<4
     shape='.';
     col='k';
+    MarkSize = 5;
 end
 
         J=(rand(size(y))-0.5)*jitter;
-        h = plot( thisX+J, y, shape, 'color', col, 'markersize', 5 );
+        h = plot( thisX+J, y, shape, 'color', col, 'markersize', MarkSize );
 
 
 end
