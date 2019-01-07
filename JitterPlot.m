@@ -9,6 +9,7 @@ function h = JitterPlot (thisX, y, jitter, shape, col, MarkSize)
 if nargin<4
     shape='.';
     col='k';
+elseif nargin<6
     MarkSize = 5;
 end
 
