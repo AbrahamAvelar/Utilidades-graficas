@@ -1,0 +1,14 @@
+function [n c] = hist_PREc(Distribucion, PREc)
+% [n c] = hist_PREc(Distribucion, PREc)
+
+a=diff(PREc);
+c=min(Distribucion):a(1):max(Distribucion);
+for i=1:length(c);
+    pre_n(i)=length(find(Distribucion(Distribucion<=c(i))));
+end
+    
+    n=[pre_n(1) diff(pre_n)];
+   % n(end+1)=length(find(Distribucion(Distribucion<=c(i))));
+    
+
+end
