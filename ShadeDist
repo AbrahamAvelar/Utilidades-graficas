@@ -13,6 +13,12 @@ function h = ShadeDist(x, y, C, alfa, SEM, shadeSEM, soloplot)
 % shadeSEM = 0; usa los valores máximo y mínimo
 % shadeSEM = 1; usa el error estándar de la media
 % shadeSEM = 2; intervalos de confianza del 95% =1.96SEM
+%
+% soloplot = 1; solo los contornos
+% soloplot = 0; Sombra coloreada
+%
+% C tiene que estar en formato [R G B] p ej [0.5 .1 1]
+%
 
 
 if nargin < 5
