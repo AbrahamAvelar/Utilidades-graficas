@@ -1,10 +1,65 @@
-function h = ShadeDist(x, y, C, alfa)
-% h = ShadeDist(x, y, C, alfa) 
-% plot of x,y with color C and transparency alfa
+function h = ShadeDist(x, y, C, alfa, SEM, shadeSEM, soloplot)
+% h = ShadeDist(x, y, C, alfa, SEM, shadeSEM, soloplot)
+% plot of x,y with color C and transparency alfa (usar alfa=0.5 para empezar)
 % plots the entire distribution with transparency and the non-transparent line with mean and std
-    desv=std(y);
-    media=mean(y);
-    PlotConError(x, media, media+desv, media-desv, C, 'o',1,0 )
-    h=fill([x x],[min(y) max(y)], C);
-    set(h,'faceAlpha', alfa);
+%
+% SEM indica qué poner como barra de error en cada punto
+% SEM = 0; usa los valores máximo y mínimo
+% SEM = 1; usa el error estándar de la media
+% SEM = 2; intervalos de confianza del 95% =1.96SEM
+% SEM = 4; solo linea de la media sin error
+%
+% shadeSEM indica qué usar para hacer la sombra alrededor de la media
+% shadeSEM = 0; usa los valores máximo y mínimo
+% shadeSEM = 1; usa el error estándar de la media
+% shadeSEM = 2; intervalos de confianza del 95% =1.96SEM
+
+
+if nargin < 5
+    SEM = 0;
+    shadeSEM = 0;
+    soloplot=0;
+elseif nargin < 6
+    shadeSEM = 0;
+    soloplot=0;
+elseif nargin<7;
+    soloplot=0;
+end
+    desv=nanstd(y);
+	sterr= desv./sum(not(isnan(y))).^(1/2);
+    media=nanmean(y);
+
+    if shadeSEM==0
+        minY=min(y);
+        maxY=max(y);
+    elseif shadeSEM==1
+        minY=media-sterr./2;
+        maxY=media+sterr./2;
+    elseif shadeSEM==2
+        minY=media-((sterr*1.96)./2);
+        maxY=media+((sterr*1.96)./2);
+    end
+    
+    if soloplot
+            plot([x fliplr(x)],[minY fliplr(maxY)], '-', 'color',C*.8)
+            hold on
+    else
+        %a=fill([x fliplr(x)],[minY fliplr(maxY)],C, 'edgecolor','none');
+        a=patch([x fliplr(x)],[minY fliplr(maxY)],C, 'edgecolor','none');
+    %    h=fill([x x],[min(y) max(y)], C); %así funcionaba para la s antigua antes de hacer
+    %    curvas de muerte
+        set(a,'faceAlpha', alfa)        
+        hold on
+    end
+    
+    if SEM == 0
+        h=PlotConError(x, media, media+desv./2, media-desv./2, C, 'o',1 );
+    elseif SEM ==1
+        h=PlotConError(x, media, media+sterr./2, media-sterr./2, C, 'o',1 );
+    elseif SEM == 2
+        h=PlotConError(x, media, media+((sterr*1.96)./2), media-((sterr*1.96)./2), C, 'o',1 );
+    elseif SEM==4
+        h=plot(x, media, '.-', 'color', C,  'markersize',2);
+        hold on
+    end    
 end
