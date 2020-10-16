@@ -67,7 +67,7 @@ end
     elseif SEM == 2
         h=PlotConError(x, media, media+((sterr*1.96)./2), media-((sterr*1.96)./2), C, 'o',3,.01 );
     elseif SEM==4
-        h=plot(x, media, '.-', 'color', C,  'markersize',3);
+        h=plot(x, media, 'o-', 'color', C,  'markersize',3);
         hold on
     end    
 end
