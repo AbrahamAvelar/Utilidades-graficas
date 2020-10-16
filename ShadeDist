@@ -1,7 +1,10 @@
 function h = ShadeDist(x, y, C, alfa, SEM, shadeSEM, soloplot)
 % h = ShadeDist(x, y, C, alfa, SEM, shadeSEM, soloplot)
+%
 % plot of x,y with color C and transparency alfa (usar alfa=0.5 para empezar)
-% plots the entire distribution with transparency and the non-transparent line with mean and std
+% y suele ser una matriz de length(x) X n donde n es el número de réplicas
+% plots the entire distribution with transparency and the non-transparent line with mean and
+% SEM or the prefferred error (see below)
 %
 % SEM indica qué poner como barra de error en cada punto
 % SEM = 0; usa los valores máximo y mínimo
@@ -21,7 +24,7 @@ function h = ShadeDist(x, y, C, alfa, SEM, shadeSEM, soloplot)
 % C tiene que estar en formato [R G B] p ej [0.5 .1 1]
 %
 
-if nargin < 5
+if nargin < 5 %para asignar valores por default
     SEM = 0;
     shadeSEM = 0;
     soloplot=0;
