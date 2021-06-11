@@ -21,7 +21,7 @@ p=p(2);
 plotHandle = plot(x(validas),y(validas),'ok');
 %legend(strcat(' r= ',num2str(r),' p= ',num2str(p)),'location','best')
 titulo=strcat(' r= ',num2str(r),' p= ',num2str(p), '  n=', num2str(length(validas)));
-fastLabels(labelx, labely, titulo);
+FastLabels(labelx, labely, titulo);
 
 n=length(validas);
 m=robustfit(x(validas),y(validas));
