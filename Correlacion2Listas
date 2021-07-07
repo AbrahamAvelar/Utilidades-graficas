@@ -1,0 +1,13 @@
+function [indices h p r] = Correlacion2Listas(Lista1,Lista2,Valores1,Valores2,indices)
+    
+    if nargin<5
+        indices = FindGeneList(Lista1,Lista2);
+    end
+    
+	indicesSinNAN = indices(~isnan(indices));
+    [r p]=corrcoef(Valores1( ~isnan(indices) ), Valores2(indicesSinNAN));
+    r=r(2);
+    p=p(2);
+    h=plot(Valores1( ~isnan(indices) ), Valores2(indicesSinNAN),'o','MarkerSize',5,'MarkerFaceColor',[0.6602 0.6602 0.6602],'MarkerEdgeColor',[0.4602 0.4602 0.4602]);
+    
+end
