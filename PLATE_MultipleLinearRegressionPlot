@@ -15,9 +15,9 @@ clf
 for i=pozos
     subplot(8,12,i)
     if ismember(i,refs)
-        MultiplLinearRegressionPlot_V2( OutputModelASGC,i,1,color,0,tfijo)
+        MultiplLinearRegressionPlot( OutputModelASGC,i,1,color,0,tfijo)
     else
-        MultiplLinearRegressionPlot_V2( OutputModelASGC,i,0,color,0,tfijo)
+        MultiplLinearRegressionPlot( OutputModelASGC,i,0,color,0,tfijo)
     end
     title(strcat(num2str(i), '- S=', num2str(round(OutputModelASGC.S(i),3))  ) )
     xlabel('')
