@@ -24,4 +24,6 @@ for i=pozos
     ylabel('')
     ylim([-4.5 1])
 end
+xlabel('Days')
+ylabel('Log(MUT/REF)')
 end
