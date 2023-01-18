@@ -1,0 +1,14 @@
+ cd /mnt/Timina/lmorales/Public/ymez/tmp/04_coverage
+ grep SAPA_YPS138_v1_chr_09 DK001c10_CONC_Q20.depth > ~/DK001c10_CONC_Q20_SAPA_Cr09.depth
+ grep SACE_S288C_v1_chr_09 DK001c10_CONC_Q20.depth > ~/DK001c10_CONC_Q20_SACE_Cr09.depth
+ 
+ scp -r javelar@dna.lavis.unam.mx:/home/javelar/*.depth D:/Dropbox/Posdoc/lavis/
+
+En Rstudio
+A <- read.csv("DK001c10_CONC_Q20_SACE_Chr09.depth", sep="\t")
+B<-A[A$X0>5,]
+plot(B$X1, B$X0, cex = .5,  main = "DK001c10_CONC_Q20_SACE_Chr09.depth")
+
+a <- read.csv("DK001c10_CONC_Q20_SAPA_Chr09.depth", sep="\t")
+b<-a[a$X0>5,]
+plot(b$X1, b$X0, cex = .5,  main = "DK001c10_CONC_Q20_SAPA_Chr09.depth")
