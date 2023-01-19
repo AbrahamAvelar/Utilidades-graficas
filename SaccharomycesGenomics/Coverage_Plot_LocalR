@@ -12,3 +12,9 @@ plot(B$X1, B$X0, cex = .5,  main = "DK001c10_CONC_Q20_SACE_Chr09.depth")
 a <- read.csv("DK001c10_CONC_Q20_SAPA_Chr09.depth", sep="\t")
 b<-a[a$X0>5,]
 plot(b$X1, b$X0, cex = .5,  main = "DK001c10_CONC_Q20_SAPA_Chr09.depth")
+
+
+awk '$3>5 {print ;}'  YMX507B07_CONC_Q20.depth | grep SACE > /home/javelar/YMX507B07_CONC_Q20_OnlyMapped.depth
+
+grep SACE YMX507B07_CONC_Q20.depth | awk '$3>3 {print $1, substr($1,length($1)-1), $2, $3}' OFS='\t' > /home/javelar/YMX507B07_CONC_Q20_OnlyMapped_SACE.depth
+
