@@ -18,3 +18,4 @@ awk '$3>5 {print ;}'  YMX507B07_CONC_Q20.depth | grep SACE > /home/javelar/YMX50
 
 grep SACE YMX507B07_CONC_Q20.depth | awk '$3>3 {print $1, substr($1,length($1)-1), $2, $3}' OFS='\t' > /home/javelar/YMX507B07_CONC_Q20_OnlyMapped_SACE.depth
 
+grep SACE YMX005548_CONC_Q20.depth | awk '$3>3 {print $1, substr($1,length($1)-1), $2, $3}' OFS='\t' > /home/javelar/YMX005548_CONC_Q20_OnlyMapped_SACE.depth
